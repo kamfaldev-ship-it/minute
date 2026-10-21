@@ -1,42 +1,60 @@
 {
   "expo": {
-    "name": "MiniGranola",
+    "name": "Minute",
     "slug": "MiniGranola",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "minigranola",
     "userInterfaceStyle": "automatic",
+    "platforms": [
+      "ios"
+    ],
     "ios": {
-      "icon": "./assets/expo.icon"
-    },
-    "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
-      },
-      "predictiveBackGestureEnabled": false
-    },
-    "web": {
-      "output": "server",
-      "favicon": "./assets/images/favicon.png"
+      "bundleIdentifier": "com.kamfal.minigranola",
+      "supportsTablet": false,
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "audio"
+        ],
+        "ITSAppUsesNonExemptEncryption": false,
+        "UIFileSharingEnabled": true,
+        "LSSupportsOpeningDocumentsInPlace": true
+      }
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#2B3FE0",
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "imageWidth": 120
         }
-      ]
+      ],
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Minute utilise le micro pour enregistrer vos réunions et conversations.",
+          "enableBackgroundRecording": true
+        }
+      ],
+      "expo-secure-store",
+      "expo-sqlite",
+      "expo-notifications",
+      [
+        "expo-share-intent",
+        {
+          "iosActivationRules": {
+            "NSExtensionActivationSupportsFileWithMaxCount": 1
+          }
+        }
+      ],
+      "expo-asset",
+      "expo-status-bar"
     ],
     "experiments": {
-      "typedRoutes": true,
-      "reactCompiler": true
+      "typedRoutes": false
     }
   }
 }

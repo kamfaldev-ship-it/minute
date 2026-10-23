@@ -2,7 +2,7 @@
 
 import * as Haptics from 'expo-haptics';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
-import { useRef, useState } from 'react';
+import { useRef, useState, type ComponentRef } from 'react';
 import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { TimeTag } from '../../components/TimeTag';
 import { AudioParts, useSegments } from '../../components/AudioParts';
@@ -26,7 +26,7 @@ export default function MeetingDetail() {
   const router = useRouter();
   const c = useColors();
   const [tab, setTab] = useState<'summary' | 'transcript'>('summary');
-  const scrollRef = useRef<ScrollView>(null);
+  const scrollRef = useRef<ComponentRef<typeof ScrollView>>(null);
   const transcriptTop = useRef(0);
   const lineTops = useRef<Record<number, number>>({});
   const [highlight, setHighlight] = useState<number | null>(null);

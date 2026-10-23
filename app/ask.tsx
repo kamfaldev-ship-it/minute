@@ -1,7 +1,7 @@
 // Questions à l'IA : sur toutes les réunions, ou sur une seule (paramètre `meetingId`).
 
 import { Link, Stack, useLocalSearchParams } from 'expo-router';
-import { useRef, useState } from 'react';
+import { useRef, useState, type ComponentRef } from 'react';
 import {
   ActivityIndicator,
   KeyboardAvoidingView,
@@ -42,7 +42,7 @@ export default function AskScreen() {
   const [input, setInput] = useState('');
   const [exchanges, setExchanges] = useState<Exchange[]>([]);
   const [loading, setLoading] = useState(false);
-  const scroll = useRef<ScrollView>(null);
+  const scroll = useRef<ComponentRef<typeof ScrollView>>(null);
 
   async function send(text: string) {
     const question = text.trim();

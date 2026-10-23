@@ -20,7 +20,7 @@ export function splitAudioFile(source: File, ext: string, targetName: (index: nu
   try {
     const read = (offset: number, length: number) => {
       input.offset = offset;
-      return input.readBytes(Math.max(0, Math.min(length, size - offset)));
+      return input.readBytesSync(Math.max(0, Math.min(length, size - offset)));
     };
     const pieces = planSplit(ext, size, read, SPLIT_TARGET_MB * 1024 * 1024);
 
@@ -49,11 +49,11 @@ function writePiece(piece: Piece, out: File, read: (offset: number, length: numb
   try {
     for (const part of piece.parts) {
       if ('bytes' in part) {
-        handle.writeBytes(part.bytes);
+        handle.writeBytesSync(part.bytes);
         continue;
       }
       for (let pos = part.from; pos < part.to; pos += BLOCK_BYTES) {
-        handle.writeBytes(read(pos, Math.min(BLOCK_BYTES, part.to - pos)));
+        handle.writeBytesSync(read(pos, Math.min(BLOCK_BYTES, part.to - pos)));
       }
     }
   } finally {
